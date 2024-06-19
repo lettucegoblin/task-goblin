@@ -1,0 +1,15 @@
+/* public/global.css */
+:root {
+    --light-primary-color: #007bff;  /* Light mode primary color */
+    --light-background-color: #ffffff;
+    --light-text-color: #000000;
+
+    /* Dark theme colors */
+    --dark-primary-color: #555;
+    --dark-background-color: #121212;
+    --dark-text-color: #e0e0e0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+}
