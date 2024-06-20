@@ -1,7 +1,8 @@
 import { Meteor } from 'meteor/meteor';
-import 'materialize-css/dist/css/materialize.min.css';
-import { onMount } from 'svelte';
 import App from '../imports/ui/App.svelte';
+
+// Import Material Web Components
+import '@material/web/all.js'; // If there's a bundle that includes everything.
 
 Meteor.startup(() => {
   new App({

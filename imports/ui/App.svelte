@@ -15,7 +15,7 @@
     $: applyTheme();  // Call applyTheme() when theme changes
   </script>
   
-  <main>
+  <main class="container">
     <h1>Collaborative To-Do List</h1>
     <AddTodo {roomCode} />
     <TodoList {roomCode} />

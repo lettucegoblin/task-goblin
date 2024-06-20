@@ -16,15 +16,17 @@
   });
 </script>
 
-<ul>
+<md-list>
+  <md-list-item noninteractive>
+    <h4 slot="headline">Todo List</h4>
+  </md-list-item>
   {#each todos as todo}
     <TodoItem {todo} />
   {/each}
-</ul>
+</md-list>
 
 <style>
-  ul {
-    list-style-type: none;
+  md-list {
     padding: 0;
   }
 </style>
