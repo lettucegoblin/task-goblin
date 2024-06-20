@@ -16,14 +16,12 @@
   });
 </script>
 
-<md-list>
-  <md-list-item noninteractive>
-    <h4 slot="headline">Todo List</h4>
-  </md-list-item>
+
+<ul class="collection">
   {#each todos as todo}
-    <TodoItem {todo} />
+  <TodoItem {todo} />
   {/each}
-</md-list>
+</ul>
 
 <style>
   md-list {

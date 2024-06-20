@@ -23,37 +23,17 @@
   }
 </script>
 
-<div>
-  <label for="dark-mode-switch"> 
-    {#if isDarkMode}
-      Dark Mode
-    {:else}
-      Light Mode
-    {/if}
-  </label>
-  <md-switch
-    id="dark-mode-switch"
-    tabindex="0"
-    icons
-    bind:this={isDarkMode}
+<div class="fixed-action-btn">
+  <a
+    id="theme-switch"
+    class="btn-floating btn-large waves-effect waves-light"
     on:click={toggleTheme}
     on:keydown={handleKeyDown}
+    tabindex="0"
+    aria-label="Toggle dark mode"
     role="switch"
-    aria-label="Toggle Dark Mode"
-    aria-checked={isDarkMode}>Dark Mode</md-switch
+    aria-checked={isDarkMode}
   >
+    <i class="material-icons">{isDarkMode ? "wb_sunny" : "brightness_2"}</i>
+  </a>
 </div>
-
-
-<style>
-  div {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1rem;
-  }
-
-  label {
-    font-size: 1.5rem;
-    margin-right: 1rem;
-  }
-</style>

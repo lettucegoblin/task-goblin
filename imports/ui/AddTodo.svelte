@@ -1,12 +1,11 @@
 <script>
   import { Meteor } from "meteor/meteor";
-  import { createEventDispatcher } from "svelte";
 
   export let roomCode;
   let text = "";
-  const dispatch = createEventDispatcher();
 
   const addTodo = () => {
+    event.preventDefault();
     if (text.trim()) {
       console.log(`Adding todo: ${text}`);
       Meteor.call("todos.insert", text, roomCode, (error) => {
@@ -20,19 +19,28 @@
   };
 </script>
 
-<div>
-  <input
-    type="text"
-    bind:value={text}
-    placeholder="Add a new to-do"
-    on:keydown={(e) => e.key === "Enter" && addTodo()}
-  />
-  <button on:click={addTodo}>Add</button>
-</div>
+<form class="row">
+  <div class="s12">
+    <div class="input-field inline valign-wrapper">
+      <input
+        id="add_todo"
+        type="text"
+        bind:value={text}
+        placeholder=" "
+        
+      />
+      <label for="add_todo">Add a new to-do</label>
+      <span class="helper-text" data-error="wrong" data-success="right"></span>
+      <button on:click={addTodo} class="btn waves-effect waves-light"
+        >Add</button
+      >
+    </div>
+  </div>
+</form>
 
 <style>
   div {
-    display: flex;
+
     gap: 0.5rem;
     margin-bottom: 1rem;
   }
