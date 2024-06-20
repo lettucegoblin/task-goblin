@@ -2,6 +2,7 @@ import { theme } from "./store.js";
 
 export function applyTheme() {
   theme.subscribe((currentTheme) => {
+    console.log(currentTheme);
     if (currentTheme === "dark") {
       // add dark class to the root html
       document.documentElement.classList.remove("light");
