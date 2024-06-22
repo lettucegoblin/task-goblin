@@ -13,11 +13,3 @@
   <AddTodo {roomCode} />
   <TodoList {roomCode} />
 </main>
-
-<style>
-  main {
-    padding: 1rem;
-    max-width: 800px;
-    margin: 0 auto;
-  }
-</style>

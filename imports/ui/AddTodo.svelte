@@ -13,6 +13,8 @@
           console.error("Error inserting todo:", error);
         } else {
           console.log("Todo added successfully");
+          // clear the input field
+          text = "";
         }
       });
     }
@@ -27,7 +29,7 @@
         type="text"
         bind:value={text}
         placeholder=" "
-        
+        autocomplete="off" 
       />
       <label for="add_todo">Add a new to-do</label>
       <span class="helper-text" data-error="wrong" data-success="right"></span>
@@ -39,6 +41,9 @@
 </form>
 
 <style>
+  .valign-wrapper{
+    align-items: end;
+  }
   div {
 
     gap: 0.5rem;
