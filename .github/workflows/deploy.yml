@@ -33,5 +33,5 @@ jobs:
         username: ${{ secrets.SSH_USER }}
         key: ${{ secrets.PRIVATE_SSHKEY }}
         port: 22
-        source: "/tmp/build"
+        source: "."
         target: "taskgoblin"
