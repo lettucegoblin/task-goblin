@@ -24,7 +24,7 @@ jobs:
 
     - name: Build App
       run: |
-        meteor build --directory /tmp/build
+        meteor build --directory ./build
 
     - name: Deploy to Server
       uses: appleboy/scp-action@master
@@ -33,5 +33,5 @@ jobs:
         username: ${{ secrets.SSH_USER }}
         key: ${{ secrets.PRIVATE_SSHKEY }}
         port: 22
-        source: "."
+        source: "./build"
         target: "taskgoblin"
