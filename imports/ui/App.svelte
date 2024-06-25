@@ -1,5 +1,11 @@
 <script>
   import { onMount } from "svelte";
+
+  // import css
+  import "../css/global.css";
+  import "../css/dark.css";
+  import "../css/light.css";
+
   import TodoList from "./TodoList.svelte";
   import AddTodo from "./AddTodo.svelte";
   import DarkMode from "./DarkMode.svelte";
