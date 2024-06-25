@@ -34,4 +34,4 @@ jobs:
         key: ${{ secrets.PRIVATE_SSHKEY }}
         port: 22
         source: "/tmp/build"
-        target: "/home/deployuser/taskgoblin"
+        target: "taskgoblin"
