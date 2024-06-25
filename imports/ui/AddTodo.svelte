@@ -41,6 +41,9 @@
 </form>
 
 <style>
+  .btn {
+    background-color: var(--md-sys-color-primary-container);
+  }
   .valign-wrapper{
     align-items: end;
   }
