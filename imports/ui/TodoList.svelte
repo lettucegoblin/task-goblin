@@ -1,27 +1,23 @@
 <script>
-  import { onMount } from "svelte";
-  import { Todos } from "../api/collections";
   import TodoItem from "./TodoItem.svelte";
-  import { Tracker } from "meteor/tracker";
   import { dndzone } from "svelte-dnd-action";
   import { flip } from "svelte/animate";
   import { overrideItemIdKeyNameBeforeInitialisingDndZones } from "svelte-dnd-action";
+  import { Todos } from "../api/collections";
+  import { onMount } from "svelte";
 
   overrideItemIdKeyNameBeforeInitialisingDndZones("_id");
 
-  export let roomCode;
-  let todos = [];
+  export let todos;  // Receive todos as a prop
   let dragList = []; // Local copy for drag and drop
   const flipDurationMs = 200;
 
   onMount(() => {
-    const handle = Meteor.subscribe("todos", roomCode);
-    Tracker.autorun(() => {
-      todos = Todos.find({ roomCode }, { sort: { order: 1 } }).fetch();
-      dragList = [...todos]; // Clone todos to dragList
-      console.log(todos);
+    console.log('TodoList mounted', todos);
+    // Subscribe to changes in todos store
+    const unsubscribe = todos.subscribe(value => {
+      dragList = value;
     });
-    return () => handle.stop();
   });
 
   function handleSort(e) {
@@ -44,7 +40,7 @@
   on:finalize={handleDndFinalize}
 >
   {#each dragList as todo (todo._id)}
-    <li class="collection-item"  animate:flip={{ duration: flipDurationMs }}>
+    <li class="collection-item" animate:flip={{ duration: flipDurationMs }}>
       <TodoItem {todo} />
     </li>
   {/each}
