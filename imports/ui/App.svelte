@@ -9,6 +9,8 @@
   import TodoList from "./TodoList.svelte";
   import AddTodo from "./AddTodo.svelte";
   import DarkMode from "./DarkMode.svelte";
+  import NavBar from "./NavBar.svelte";
+
   import { uniqueNamesGenerator, Config, adjectives, colors, animals } from 'unique-names-generator';
 
   const customConfig = {
@@ -41,3 +43,9 @@
     <TodoList {roomCode} />
   {/if}
 </main>
+
+<style>
+  main {
+    margin-top: 2rem;
+  }
+</style>
