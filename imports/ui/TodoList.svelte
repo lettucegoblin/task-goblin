@@ -5,18 +5,23 @@
   import { overrideItemIdKeyNameBeforeInitialisingDndZones } from "svelte-dnd-action";
   import { Todos } from "../api/collections";
   import { onMount } from "svelte";
+  import { todos } from '../stores/store'; // assuming your todos store is in this file
 
   overrideItemIdKeyNameBeforeInitialisingDndZones("_id");
 
-  export let todos;  // Receive todos as a prop
   let dragList = []; // Local copy for drag and drop
   const flipDurationMs = 200;
+  let TodaysDate = new Date().toLocaleDateString();
 
   onMount(() => {
     console.log('TodoList mounted', todos);
     // Subscribe to changes in todos store
     const unsubscribe = todos.subscribe(value => {
-      dragList = value;
+      // reduce the todos to only show todays todos
+      dragList = value.filter(todo => {
+        const date = new Date(todo.createdAt).toLocaleDateString();
+        return date === TodaysDate;
+      });
     });
   });
 

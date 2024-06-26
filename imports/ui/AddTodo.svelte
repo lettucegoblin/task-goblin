@@ -1,14 +1,14 @@
 <script>
   import { Meteor } from "meteor/meteor";
+  import { roomCode } from "../stores/store";
 
-  export let roomCode;
   let text = "";
 
   const addTodo = () => {
     event.preventDefault();
     if (text.trim()) {
       console.log(`Adding todo: ${text}`);
-      Meteor.call("todos.insert", text, roomCode, (error) => {
+      Meteor.call("todos.insert", text, $roomCode, (error) => {
         if (error) {
           console.error("Error inserting todo:", error);
         } else {
