@@ -31,18 +31,18 @@
 
   onMount(() => {
     handleRoomCode();
-    handleTodos();
+    return handleTodos();
   });
 
   function handleTodos() {
-    const handle = Meteor.subscribe("todos", roomCode);
+    const handle = Meteor.subscribe("todos", $roomCode);
     Tracker.autorun(() => {
       const fetchedTodos = Todos.find(
-        { roomCode },
+        { roomCode: $roomCode },
         { sort: { order: 1 } }
       ).fetch();
-      todos.set(fetchedTodos); // This is a Svelte store update
-      console.log(fetchedTodos);
+      todos.set( fetchedTodos); // This is a Svelte store update
+      console.log($roomCode, fetchedTodos);
       isReady = true;
     });
     return () => handle.stop();
@@ -52,9 +52,9 @@
     const params = new URLSearchParams(window.location.search);
     const urlRoomCode = params.get("roomCode");
     if (urlRoomCode) {
-      roomCode = urlRoomCode;
+      roomCode.set(urlRoomCode);
     } else {
-      roomCode = uniqueNamesGenerator(customConfig);
+      roomCode.set(uniqueNamesGenerator(customConfig));
       window.history.pushState({}, "", `?roomCode=${roomCode}`);
     }
   }
