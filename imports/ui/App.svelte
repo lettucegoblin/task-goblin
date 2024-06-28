@@ -55,7 +55,7 @@
       roomCode.set(urlRoomCode);
     } else {
       roomCode.set(uniqueNamesGenerator(customConfig));
-      window.history.pushState({}, "", `?roomCode=${roomCode}`);
+      window.history.pushState({}, "", `?roomCode=${$roomCode}`);
     }
   }
 </script>
