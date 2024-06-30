@@ -29,7 +29,7 @@
         type="text"
         bind:value={text}
         placeholder=" "
-        autocomplete="off" 
+        autocomplete="off"
       />
       <label for="add_todo">Add a new to-do</label>
       <span class="helper-text" data-error="wrong" data-success="right"></span>
@@ -41,14 +41,10 @@
 </form>
 
 <style>
-  .btn {
-    background-color: var(--md-sys-color-primary-container);
-  }
-  .valign-wrapper{
+  .valign-wrapper {
     align-items: end;
   }
   div {
-
     gap: 0.5rem;
     margin-bottom: 1rem;
   }
