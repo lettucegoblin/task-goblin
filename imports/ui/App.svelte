@@ -21,6 +21,7 @@
   import NavBar from "./NavBar.svelte";
   import TodoHistory from "./TodoHistory.svelte";
   import AddRecurringTask from "./AddRecurringTask.svelte";
+  import RecurringTaskList from "./RecurringTaskList.svelte";
 
   let isReady = false;
 
@@ -65,6 +66,7 @@
   <DarkMode />
   {#if isReady}
     <AddRecurringTask />
+    <RecurringTaskList />
     <AddTodo />
     <TodoList />
     <TodoHistory />
