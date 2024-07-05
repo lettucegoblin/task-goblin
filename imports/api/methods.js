@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-import { Todos } from './collections';
+import { Todos, RecurringTasks } from './collections';
 import { check } from 'meteor/check';
 
 Meteor.methods({
@@ -29,5 +29,17 @@ Meteor.methods({
     check(todoId, String);
 
     Todos.remove(todoId);
+  },
+  'recurringTasks.insert'(task, roomCode) {
+    check(roomCode, String);
+
+    console.log('inserting recurring task', task, roomCode);
+
+    RecurringTasks.insert({
+      task,
+      roomCode,
+      createdAt: new Date(),
+      lastCompleted: null
+    });
   }
 });

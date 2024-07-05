@@ -1,8 +1,8 @@
 <script>
   import { onMount } from "svelte";
 
-  import { Todos } from "../api/collections";
-  import { todos, roomCode } from "../stores/store";
+  import { Todos, RecurringTasks } from "../api/collections";
+  import { todos, roomCode, recurringTasks } from "../stores/store";
   import { Tracker } from "meteor/tracker";
   import {
     uniqueNamesGenerator,
@@ -33,7 +33,8 @@
 
   onMount(() => {
     handleRoomCode();
-    return handleTodos();
+    handleTodos();
+    return handleTasks();
   });
 
   function handleTodos() {
@@ -45,6 +46,20 @@
       ).fetch();
       todos.set( fetchedTodos); // This is a Svelte store update
       console.log($roomCode, fetchedTodos);
+      
+    });
+    return () => handle.stop();
+  }
+
+  function handleTasks() {
+    const handle = Meteor.subscribe("recurringTasks", $roomCode);
+    Tracker.autorun(() => {
+      const fetchedTasks = RecurringTasks.find(
+        { roomCode: $roomCode },
+        { sort: { order: 1 } }
+      ).fetch();
+      recurringTasks.set(fetchedTasks); // This is a Svelte store update
+      console.log($roomCode, fetchedTasks);
       isReady = true;
     });
     return () => handle.stop();

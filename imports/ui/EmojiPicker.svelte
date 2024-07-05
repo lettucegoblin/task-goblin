@@ -2,7 +2,7 @@
   import "emoji-picker-element";
   import { createEventDispatcher, onMount } from "svelte";
 
-  let isVisible = false;
+  export let isVisible = false;
   let emoji = "🚀";
   const dispatch = createEventDispatcher();
 
@@ -13,19 +13,23 @@
     dispatch('emojiSelected', { emoji });
   }
 
+  function toggleVisibility() {
+    isVisible = !isVisible;
+  }
+
   onMount(() => {
     var elems = document.querySelectorAll(".collapsible");
     var instances = M.Collapsible.init(elems, { accordion: false });
   });
+
+
 </script>
 
 <button
-  class="btn waves-effect waves-light"
-  on:click={() => {
-    isVisible = !isVisible;
-  }}
+  class="emoji-picker btn waves-effect waves-light"
+  on:click={toggleVisibility}
 >
-  {isVisible ? "Hide" : "Show"} Emoji Picker
+  {emoji}
 </button>
 {#if isVisible}
   <emoji-picker placeholder="Select an emoji" on:emoji-click={handleEmojiClick}
@@ -35,6 +39,7 @@
 <style>
   emoji-picker {
     position: absolute;
-    z-index: 9;
+    z-index: 9999;
+    margin-top: 60px;
   }
 </style>
