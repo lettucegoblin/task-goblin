@@ -2,7 +2,7 @@
   import { onMount } from "svelte";
   import * as d3 from "d3";
   import { recurringTasks } from "../stores/store";
-
+  import AddRecurringTask from "./AddRecurringTask.svelte";
   let svg;
   let xScale, yScale;
   const width = 800; // Width of the graph
@@ -11,6 +11,7 @@
 
   let dayStarted = false;
   let dayStartTime = null;
+  let taskId = null;
 
   function startday() {
     dayStartTime = Date.now();
@@ -35,9 +36,13 @@
     setInterval(() => updateChart(), updateInterval); // Update every second
   }
 
-  function handleBarClick(taskId) {
-    console.log("Clicked task ID:", taskId);
+  function handleBarClick(_taskId) {
+    console.log("Clicked task ID:", _taskId);
     // Perform further actions based on the task ID
+    taskId = null; // Temporarily set to null
+    setTimeout(() => {
+      taskId = _taskId; // Set to the new value
+    }, 0); // Use a timeout to ensure the change is detected
   }
 
   function updateChart() {
@@ -105,9 +110,14 @@
     bars.exit().remove();
     labels.exit().remove();
   }
+
 </script>
 
 {#if !dayStarted}
   <button on:click={startday}> start day </button>
+{/if}
+{#if taskId}
+<AddRecurringTask taskId={taskId}
+/>
 {/if}
 <div id="chart"></div>
